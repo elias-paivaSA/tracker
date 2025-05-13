@@ -1,5 +1,5 @@
 # tracker
-Habit Tracker repository - 12/05/2025
+Habit Tracker repository
 
  - This app will be a habit tarcker, which will allow me to tarck my habits on a daily basis.
  - It should have a login page, that will allow me to login with Google, Facebook.
