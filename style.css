@@ -1,0 +1,39 @@
+body {
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.horizontal-line-or {
+    display: flex;
+    flex-direction: column;
+}
+
+span {
+  display: flex;
+  flex-direction: row;
+}
+
+span:before, span:after{
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+}
+span:before {
+  margin-right: 10px
+}
+span:after {
+  margin-left: 10px
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
