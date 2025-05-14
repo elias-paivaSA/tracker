@@ -5,6 +5,8 @@ body {
     justify-content: center;
     min-height: 100vh;
     text-align: center;
+    font-family: "Montserrat", sans-serif;
+
 }
 
 main, header {
@@ -81,6 +83,36 @@ span:before {
 }
 span:after {
   margin-left: 10px
+}
+
+.google-btn img,
+.facebook-btn img {
+  vertical-align: middle;
+  margin-right: 8px; /* or tweak spacing as needed */
+  height: 20px; /* optional: normalize icon size */
+  width: auto;
+}
+
+.remember-password {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remember-left {
+  display: flex;
+  align-items: center;
+}
+
+.remember-left input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.fgt-password {
+  color: royalblue;
+  cursor: pointer;
+  margin: 0;
 }
 
 
