@@ -11,36 +11,50 @@
 
 <body>
     <div class="main-ctn">
+
         <header>
             <h1>Sign In</h1>
         </header>
 
         <main>
             <form action="">
-                <input type="email" name="email" id="email" placeholder="E-mail">
-                <i class="bi bi-envelope-open"></i>
-                <br>
-                <input type="password" name="password" id="password" placeholder="Password">
-                <i class="bi bi-unlock2"></i>
-                <br>
-                <button>LOG IN</button>
+                <div class="input-wrapper">
+                    <img src="/img/google.svg" alt="" />
+                    <input type="email" name="email" id="email" placeholder="E-mail">
+                </div>
+                
+                <div class="input-wrapper">
+                    <img src="/img/facebook.svg" alt="" />
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+            
+                <button class="login-btn">LOG IN</button>
 
                 <span>OR</span>
-                    
+
+                <button class="google-btn">
+                    <img src="/img/google.svg" alt="" /> Sign in with Google
+                </button>
+
+                <button class="Facebook-btn">
+                    <img src="/img/facebook.svg" alt="" /> Sign in with Facebook
+                </button>
+
                 <div class="remember-password">
                     <input type="checkbox" id="remember-me" name="remember-me" value="remember-me" checked>
                     <label for="remember-me"> Remember me</label><br>
                     <p class="fgt-password">Forgort Password?</p>
                 </div>
-                
+
             </form>
+            <div>
+                <p>Don't have an account?<a href="">Create</a></p>
+            </div>
         </main>
 
-        <div>
-            <span>Don't have an account?<a href="">Create</a></span>
-        </div>
 
-        <footer>&copy; 2025 MyWebsite. All rights reserved.</footer>
+
+        <footer>&copy; 2025 Elias Paiva. All rights reserved.</footer>
     </div>
 </body>
 

@@ -4,7 +4,55 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    text-align: center;
 }
+
+main, header {
+    transform: translateY(-100px);
+
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 0.3rem; /* space between inputs */
+}
+
+.input-wrapper:nth-child(2) {
+  margin-bottom: 1rem;
+}
+
+.input-wrapper img {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: gray;
+  pointer-events: none;
+  font-size: 1rem;
+}
+
+.input-wrapper input[type="email"],
+.input-wrapper input[type="password"] {
+  padding-left: 35px; /* space for icon */
+  height: 50px;
+  width: 100%; /* or a fixed width if you prefer */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+} 
 
 .horizontal-line-or {
     display: flex;
