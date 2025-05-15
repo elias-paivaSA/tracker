@@ -9,6 +9,30 @@ body {
 
 }
 
+.main-ctn {
+  display: flex;
+  flex-direction: column; /* stacks image and form on small screens */
+  width: 97%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.ctn-img {
+  display: none;
+  width: 100%;
+  height: 300px; /* mobile-friendly height */
+  background-image: url('/img/cartoon-office-manager_1012-486.avif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ctn-form {
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
 main, header {
     transform: translateY(-100px);
 
@@ -66,22 +90,22 @@ header h1 {
 }
 
 
-span {
+form span {
   display: flex;
   flex-direction: row;
   margin-bottom: 1rem;
 }
 
-span:before, span:after{
+form span:before, form span:after{
   content: "";
   flex: 1 1;
   border-bottom: 1px solid;
   margin: auto;
 }
-span:before {
+form span:before {
   margin-right: 10px
 }
-span:after {
+form span:after {
   margin-left: 10px
 }
 
@@ -123,4 +147,37 @@ footer {
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+     background-color: white;
+  }
+.main-ctn {
+  margin: 0;
+  padding: 0;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+  }
+
+  .ctn-img {
+    display: block; /* <-- show it */
+    width: 50%;
+    height: 100vh;
+    background-image: url('/img/login-image.jpg');
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+  .ctn-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+  }
 }
