@@ -1,5 +1,5 @@
 body {
-  background-color: aqua;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,13 +107,29 @@ form span:after {
   margin-left: 10px;
 }
 
-.google-btn img,
-.facebook-btn img {
-  vertical-align: middle;
-  margin-right: 8px; /* or tweak spacing as needed */
-  height: 20px; /* optional: normalize icon size */
-  width: auto;
+
+.glg-fcb-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem; /* smaller space between buttons */
 }
+
+.google-btn,
+.facebook-btn {
+  flex: 1;
+  margin: 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* space between icon and text */
+  padding: 0 1rem; /* horizontal padding inside the button */
+  font-size: 0.9rem; /* optional: tighten text a bit */
+  height: 50px;
+  border-radius: 6px;
+  flex: 1;/* remove any extra margin */
+}
+
 
 .remember-password {
   margin-top: 1rem;
@@ -166,7 +182,7 @@ footer {
     background-size: contain; /* SEE the full image */
     background-position: center; /* center it in the box */
     background-repeat: no-repeat; /* don't tile it */
-    width: 100%;
+    width: 50%;
     height: 100vh;
   }
 
