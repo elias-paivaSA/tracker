@@ -6,6 +6,7 @@ body {
   min-height: 100vh;
   text-align: center;
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden
 }
 
 .main-ctn {
@@ -28,8 +29,9 @@ body {
 
 .ctn-form {
   width: 100%;
-
   box-sizing: border-box;
+  max-width: 400px;
+  margin: auto;
 }
 
 main,
@@ -110,6 +112,7 @@ form span:after {
 
 .glg-fcb-btn {
   display: flex;
+  flex-wrap: wrap; /* wrap if needed */
   flex-direction: row;
   justify-content: space-between;
   gap: 0.5rem; /* smaller space between buttons */
@@ -121,27 +124,33 @@ form span:after {
   margin: 0; 
   display: flex;
   align-items: center;
+  min-width: 40%;
   justify-content: center;
   gap: 0.5rem; /* space between icon and text */
-  padding: 0 1rem; /* horizontal padding inside the button */
+  padding: 1rem; /* horizontal padding inside the button */
   font-size: 0.9rem; /* optional: tighten text a bit */
   height: 50px;
   border-radius: 6px;
   flex: 1;/* remove any extra margin */
 }
 
+.google-btn img,
+.facebook-btn img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
 
 .remember-password {
   margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: spac-between;
   align-items: center;
+  text-align: center;
 }
 
-.remember-left {
-  display: flex;
-  align-items: center;
-}
+
 
 .remember-left input[type="checkbox"] {
   margin-right: 6px;
@@ -162,7 +171,7 @@ footer {
   padding-bottom: 20px;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 2500px) {
   body {
     background-color: white;
   }
@@ -192,5 +201,45 @@ footer {
     flex-direction: column;
     justify-content: center;
     padding: 4rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .glg-fcb-btn {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .remember-password {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .remember-left {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .glg-fcb-btn {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+  }
+  .google-btn,
+  .facebook-btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  main,
+  header {
+    transform: translateY(-70px);
+  }
+
+  .ctn-form {
+    padding-top: 2rem; /* optional: adds breathing room below the title */
   }
 }
