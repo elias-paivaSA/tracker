@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="/style/login.css">
-    <title>Login - Tracker</title>
+    <link rel="stylesheet" href="/style/signup.css">
+    <title>Sign Up - Tracker</title>
 </head>
 
 <body>
@@ -20,47 +19,45 @@
         </div>
         <div class="ctn-form">
             <header>
-                <h1>Sign In</h1>
+                <h1>Sign Up</h1>
             </header>
 
             <main>
                 <form action="">
                     <div class="input-wrapper">
-                        <img src="/img/envelope-open.svg" alt="" />
-                        <input type="email" name="email" id="email" placeholder="E-mail">
+                        <img src="/img/person-badge.svg" alt="" />
+                        <input type="text" name="name" id="name" placeholder="Name">
                     </div>
 
-                    <div class="input-wrapper">
+                    <div class="input-wrapper input-wrapper-email-second">
+                        <img src="/img/envelope-open.svg" alt="" />
+                        <input type="email" name="email" id="email" placeholder="Email">
+                    </div>
+
+                     <div class="input-wrapper">
                         <img src="/img/unlock2.svg" alt="" />
                         <input type="password" name="password" id="password" placeholder="Password">
                     </div>
 
-                    <button class="login-btn">LOG IN</button>
+                    <div class="input-wrapper">
+                        <img src="/img/unlock2.svg" alt="" />
+                        <input type="password" name="password" id="passwordTwo" placeholder="Confirm Your Password">
+                    </div>
 
-                    <span>OR</span>
+                    <button class="login-btn">CREATE ACCOUNT</button>
+
 
                     <div class="glg-fcb-btn">
                         <button class="google-btn">
-                            <img src="/img/google.svg" alt="" /> Sign in with Google
+                            <img src="/img/google.svg" alt="" /> Use Your Google Account
                         </button>
 
                         <button class="facebook-btn">
-                            <img src="/img/facebook.svg" alt="" /> Sign in with Facebook
+                            <img src="/img/facebook.svg" alt="" /> Use Your Facebook Account
                         </button>
                     </div>
 
-                    <div class="remember-password">
-                        <div class="remember-left">
-                            <input type="checkbox" id="remember-me" name="remember-me" checked>
-                            <label for="remember-me">Remember me</label>
-                        </div>
-                        <p class="fgt-password">Forgot Password?</p>
-                    </div>
-
                 </form>
-                <div>
-                    <p>Don't have an account?<a href=""> Create</a></p>
-                </div>
             </main>
         </div>
 
@@ -70,4 +67,6 @@
     <footer>&copy; 2025 Elias Paiva. All rights reserved.</footer>
 </body>
 
+</html>
+</body>
 </html>
