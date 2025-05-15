@@ -1,12 +1,11 @@
 body {
-    background-color: aqua;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    font-family: "Montserrat", sans-serif;
-
+  background-color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .main-ctn {
@@ -21,7 +20,7 @@ body {
   display: none;
   width: 100%;
   height: 300px; /* mobile-friendly height */
-  background-image: url('/img/cartoon-office-manager_1012-486.avif');
+  background-image: url("/img/cartoon-office-manager_1012-486.avif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -33,15 +32,14 @@ body {
   box-sizing: border-box;
 }
 
-main, header {
-    transform: translateY(-100px);
-
+main,
+header {
+  transform: translateY(-100px);
 }
 
 header h1 {
   font-size: 3rem;
 }
-
 
 .input-wrapper {
   position: relative;
@@ -80,15 +78,14 @@ header h1 {
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-bottom: 1rem;
-} 
-
-.google-btn, .facebook-btn{
-    height: 50px;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-
 }
 
+.google-btn,
+.facebook-btn {
+  height: 50px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
 
 form span {
   display: flex;
@@ -96,17 +93,18 @@ form span {
   margin-bottom: 1rem;
 }
 
-form span:before, form span:after{
+form span:before,
+form span:after {
   content: "";
   flex: 1 1;
   border-bottom: 1px solid;
   margin: auto;
 }
 form span:before {
-  margin-right: 10px
+  margin-right: 10px;
 }
 form span:after {
-  margin-left: 10px
+  margin-left: 10px;
 }
 
 .google-btn img,
@@ -139,7 +137,6 @@ form span:after {
   margin: 0;
 }
 
-
 footer {
   position: fixed;
   left: 0;
@@ -151,11 +148,11 @@ footer {
 
 @media (min-width: 768px) and (max-width: 1024px) {
   body {
-     background-color: white;
+    background-color: white;
   }
-.main-ctn {
-  margin: 0;
-  padding: 0;
+  .main-ctn {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: row;
     height: 100vh;
@@ -165,12 +162,12 @@ footer {
 
   .ctn-img {
     display: block; /* <-- show it */
-    width: 50%;
+    background-image: url("/img/login-image.jpg");
+    background-size: contain; /* SEE the full image */
+    background-position: center; /* center it in the box */
+    background-repeat: no-repeat; /* don't tile it */
+    width: 100%;
     height: 100vh;
-    background-image: url('/img/login-image.jpg');
-    background-size: cover;
-    background-position: right;
-    background-repeat: no-repeat;
   }
 
   .ctn-form {
