@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
 
 .main-ctn {
@@ -69,13 +69,29 @@ header h1 {
 .input-wrapper input[type="email"],
 .input-wrapper input[type="password"],
 .input-wrapper input[type="text"] {
-  padding-left: 35px; /* space for icon */
-  height: 50px;
+  box-sizing: border-box;
   width: 100%; /* or a fixed width if you prefer */
-  border: 1px solid #ccc;
+  height: 50px;
+  padding-left: 35px; /* space for icon */
+  border: 2px solid #3b82f6;
   border-radius: 6px;
   font-size: 1rem;
-  box-sizing: border-box;
+  transition: all 0.5s ease;
+}
+
+input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(153, 168, 152, 0.25);
+  outline: none;
+}
+
+input:hover {
+  border-color: #999;
+}
+
+::placeholder {
+  color: black; /* light gray */
+  font-weight: 400;
 }
 
 .login-btn {
@@ -85,6 +101,13 @@ header h1 {
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-bottom: 1rem;
+  background-color: #3b82f6;
+  color: white;
+}
+
+.login-btn:hover {
+  background-color: #2563eb;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.2);
 }
 
 .google-btn,
@@ -92,7 +115,17 @@ header h1 {
   height: 50px;
   border-radius: 6px;
   margin-bottom: 1rem;
+  background-color: white;
+  border: 2px solid #3b82f6;
+  color: black;
 }
+
+.google-btn:hover {
+  background-color: rgba(219, 68, 55, 0.1);
+  box-shadow: 0 4px 10px rgba(219, 68, 55, 0.2);
+}
+
+
 
 form span {
   display: flex;
@@ -114,7 +147,6 @@ form span:after {
   margin-left: 10px;
 }
 
-
 .glg-fcb-btn {
   display: flex;
   flex-wrap: wrap; /* wrap if needed */
@@ -126,7 +158,7 @@ form span:after {
 .google-btn,
 .facebook-btn {
   flex: 1;
-  margin: 0; 
+  margin: 0;
   display: flex;
   align-items: center;
   min-width: 40%;
@@ -136,7 +168,7 @@ form span:after {
   font-size: 0.9rem; /* optional: tighten text a bit */
   height: 50px;
   border-radius: 6px;
-  flex: 1;/* remove any extra margin */
+  flex: 1; /* remove any extra margin */
 }
 
 .google-btn img,
@@ -146,7 +178,6 @@ form span:after {
   margin-right: 8px;
 }
 
-
 .remember-password {
   margin-top: 1rem;
   display: flex;
@@ -154,8 +185,6 @@ form span:after {
   align-items: center;
   text-align: center;
 }
-
-
 
 .remember-left input[type="checkbox"] {
   margin-right: 6px;
@@ -167,6 +196,11 @@ form span:after {
   margin: 0;
 }
 
+.fgt-password:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
 footer {
   position: fixed;
   left: 0;
@@ -174,6 +208,24 @@ footer {
   width: 100%;
   text-align: center;
   padding-bottom: 20px;
+}
+
+a, .remember-password p {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #2563eb; /* darker blue */
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  border-radius: 4px;
 }
 
 @media (min-width: 768px) and (max-width: 2500px) {
@@ -208,7 +260,7 @@ footer {
     padding: 4rem;
   }
 
-   .remember-password {
+  .remember-password {
     flex-direction: column;
     gap: 1rem;
   }
