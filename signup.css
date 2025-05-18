@@ -48,7 +48,18 @@ header h1 {
   margin-bottom: 0.3rem; /* space between inputs */
 }
 
+.input-error-msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 
+.input-error-msg p {
+  display: none;
+  font-size: 0.8rem;
+  text-align: left;
+  margin: 0 0 10px 0;
+}
 
 .input-wrapper img {
   position: absolute;
