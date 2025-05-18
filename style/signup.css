@@ -54,6 +54,26 @@ header h1 {
   justify-content: flex-start;
 }
 
+ul {
+  display: none;
+  margin: 0.5rem 0 0.5rem 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+ul li{
+  font-size: 0.7rem;
+  line-height: 1.2rem
+
+}
+
+li::before {
+  content: "● "; /* Unicode checkmark + space */
+  color: green;
+  font-weight: bold;
+}
+
 .input-error-msg p {
   display: none;
   font-size: 0.8rem;
