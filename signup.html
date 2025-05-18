@@ -1,72 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/style/signup.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style/signup.css" />
     <title>Sign Up - Tracker</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="main-ctn">
-        <div class="ctn-img">
-            <span></span>
-        </div>
-        <div class="ctn-form">
-            <header>
-                <h1>Sign Up</h1>
-            </header>
+      <div class="ctn-img">
+        <span></span>
+      </div>
+      <div class="ctn-form">
+        <header>
+          <h1>Sign Up</h1>
+        </header>
 
-            <main>
-                <form action="">
-                    <div class="input-wrapper">
-                        <img src="/img/person-badge.svg" alt="" />
-                        <input type="text" name="name" id="name" placeholder="Name">
-                    </div>
+        <main>
+          <form action="">
+            <div class="input-error-msg">
+              <div class="input-wrapper">
+                <img src="/img/person-badge.svg" alt="" />
+                <input type="text" name="name" id="name" placeholder="Name" />
+              </div>
+              <p>This field has to be completed</p>
+            </div>
 
-                    <div class="input-wrapper input-wrapper-email-second">
-                        <img src="/img/envelope-open.svg" alt="" />
-                        <input type="email" name="email" id="email" placeholder="Email">
-                    </div>
+            <div class="input-error-msg">
+              <div class="input-wrapper input-wrapper-email-second">
+                <img src="/img/envelope-open.svg" alt="" />
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                />
+              </div>
+              <p>This field has to be completed</p>
+            </div>
 
-                     <div class="input-wrapper">
-                        <img src="/img/unlock2.svg" alt="" />
-                        <input type="password" name="password" id="password" placeholder="Password">
-                    </div>
+            <div class="input-error-msg">
+              <div class="input-wrapper">
+                <img src="/img/unlock2.svg" alt="" />
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                />
+              </div>
+              <p>This field has to be completed</p>
+            </div>
 
-                    <div class="input-wrapper">
-                        <img src="/img/unlock2.svg" alt="" />
-                        <input type="password" name="password" id="passwordTwo" placeholder="Confirm Your Password">
-                    </div>
+            <div class="input-error-msg">
+            <div class="input-wrapper">
+              <img src="/img/unlock2.svg" alt="" />
+              <input
+                type="password"
+                name="password"
+                id="passwordTwo"
+                placeholder="Confirm Your Password"
+              />
+            </div>
+            <p>This field has to be completed</p>
+            </div>
 
-                    <button class="login-btn">CREATE ACCOUNT</button>
+            <button class="login-btn">CREATE ACCOUNT</button>
 
+            <div class="glg-fcb-btn">
+              <button class="google-btn">
+                <img src="/img/google.svg" alt="" /> Use Your Google Account
+              </button>
 
-                    <div class="glg-fcb-btn">
-                        <button class="google-btn">
-                            <img src="/img/google.svg" alt="" /> Use Your Google Account
-                        </button>
-
-                        <button class="facebook-btn">
-                            <img src="/img/facebook.svg" alt="" /> Use Your Facebook Account
-                        </button>
-                    </div>
-
-                </form>
-            </main>
-        </div>
-
-
-
+              <button class="facebook-btn">
+                <img src="/img/facebook.svg" alt="" /> Use Your Facebook Account
+              </button>
+            </div>
+          </form>
+        </main>
+      </div>
     </div>
     <footer>&copy; 2025 Elias Paiva. All rights reserved.</footer>
     <script src="/script/signup.js"></script>
-</body>
-
-
+  </body>
 </html>
