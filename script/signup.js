@@ -19,7 +19,7 @@ function validateEmail(email) {
 }
 
 function validatePassword(password) {
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{4,8}$/;
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{4,12}$/;
   return regex.test(password);
 }
 
@@ -53,8 +53,7 @@ form.addEventListener("submit", (e) => {
     emailMessageOne.style.display = "block";
     emailInput.style.borderColor = "red";
     isValid = false;
-  } else if (!validateEmail(emailInput.value)) {
-    emailMessageTwo.style.display = "block"; 
+  } else if (!validateEmail(emailInput.value)) { 
     emailInput.style.borderColor = "red";
     isValid = false;
   }
@@ -90,7 +89,6 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-
 nameInput.addEventListener("click", () => {
   nameMessage.style.display = "none";
   nameInput.style.borderColor = "initial";
@@ -103,4 +101,10 @@ emailInput.addEventListener("click", () => {
 
 passwordInput.addEventListener("click", () => {
   passwordRules.style.display = "block";
+  passwordInput.style.borderColor = "initial";
+});
+
+passwordTwoInput.addEventListener("click", () => {
+  passwordTwoMessage.style.display = "none";
+  passwordTwoInput.style.borderColor = "initial";
 });
