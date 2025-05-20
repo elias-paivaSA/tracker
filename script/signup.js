@@ -12,6 +12,10 @@ const emailMessageOne = document.querySelector(".email-msg-one");
 const emailMessageTwo = document.querySelector(".email-msg-two");
 const passwordMessage = document.querySelector(".password-msg");
 const passwordTwoMessage = document.querySelector(".password-two-msg");
+const footer = document.querySelector("footer");
+
+//el.style.removeProperty('zoom');
+
 
 function validateEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

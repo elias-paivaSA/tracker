@@ -1,13 +1,13 @@
 body {
-  background-color: white;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   min-height: 100vh;
-  text-align: center;
   font-family: "Montserrat", sans-serif;
-  overflow-x: hidden
+  margin: 0;
+  overflow-x: hidden;
 }
+
+/* */
 
 .main-ctn {
   display: flex;
@@ -15,6 +15,9 @@ body {
   width: 97%;
   max-width: 1200px;
   margin: auto;
+    flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .ctn-img {
@@ -255,12 +258,9 @@ a:focus {
 
 
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   text-align: center;
-  padding-bottom: 20px;
+  padding: 1rem 0;
+  font-size: 0.9rem;
 }
 
 @media (min-width: 768px) and (max-width: 2500px) {
@@ -268,7 +268,7 @@ footer {
     background-color: white;
   }
   .main-ctn {
-    margin: 0;
+    margin: 50px auto auto auto;
     padding: 0;
     display: flex;
     flex-direction: row;
