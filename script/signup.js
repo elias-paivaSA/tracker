@@ -84,14 +84,23 @@ form.addEventListener("submit", (e) => {
     isValid = false;
   }
 
-  console.log("object");
-
    // Submit if all valid
   if (isValid) {
     form.submit();
   }
 });
 
-passwordInput.addEventListener("focus", () => {
+
+nameInput.addEventListener("click", () => {
+  nameMessage.style.display = "none";
+  nameInput.style.borderColor = "initial";
+});
+
+emailInput.addEventListener("click", () => {
+  emailMessageOne.style.display = "none";
+  emailInput.style.borderColor = "initial";
+});
+
+passwordInput.addEventListener("click", () => {
   passwordRules.style.display = "block";
 });
