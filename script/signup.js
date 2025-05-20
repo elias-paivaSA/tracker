@@ -18,50 +18,80 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
+function validatePassword(password) {
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{4,8}$/;
+  return regex.test(password);
+}
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  let isValid = true;
+
   nameMessage.style.display = "none";
   nameInput.style.borderColor = "initial";
 
+  emailMessageOne.style.display = "none";
+  emailMessageTwo.style.display = "none";
+  emailInput.style.borderColor = "initial";
+
+
   passwordMessage.style.display = "none";
   passwordInput.style.borderColor = "initial";
-
   passwordTwoMessage.style.display = "none";
   passwordTwoInput.style.borderColor = "initial";
 
-  if (nameInput.value === "") {
+  passwordRules.style.display = "none";
+
+  if (nameInput.value.trim() === "") {
     nameMessage.style.display = "block";
     nameInput.style.borderColor = "red";
+    isValid = false;
   }
 
-  if (emailInput.value === "") {
-    emailMessageOne.style.display = "block"; // show "required"
+  if (emailInput.value.trim() === "") {
+    emailMessageOne.style.display = "block";
     emailInput.style.borderColor = "red";
+    isValid = false;
   } else if (!validateEmail(emailInput.value)) {
-    emailMessageTwo.style.display = "block"; // show "invalid"
+    emailMessageTwo.style.display = "block"; 
     emailInput.style.borderColor = "red";
+    isValid = false;
   }
 
-  if (!validateEmail(emailInput.value)) {
-    emailMessageTwo.style.display = "block";
-  }
-
-  if (passwordInput.value === "") {
-    passwordInput.style.borderColor = "red";
+    // Password validation - check empty first
+  if (passwordInput.value.trim() === "") {
     passwordMessage.style.display = "block";
+    passwordInput.style.borderColor = "red";
+    isValid = false;
+  } else if (!validatePassword(passwordInput.value)) {
+    // Show password rules if password invalid
+    passwordRules.style.display = "block";
+    passwordInput.style.borderColor = "red";
+    isValid = false;
   }
 
-  if (passwordTwoInput.value !== passwordInput.value) {
+  // Confirm password validation
+  if (passwordTwoInput.value.trim() === "") {
+    passwordTwoMessage.textContent = "Please confirm your password";
     passwordTwoMessage.style.display = "block";
     passwordTwoInput.style.borderColor = "red";
+    isValid = false;
+  } else if (passwordTwoInput.value !== passwordInput.value) {
+    passwordTwoMessage.textContent = "Passwords do not match";
+    passwordTwoMessage.style.display = "block";
+    passwordTwoInput.style.borderColor = "red";
+    isValid = false;
   }
 
-  if (passwordTwoInput.value === "") {
-    passwordTwoMessage.style.display = "block";
-    passwordTwoInput.style.borderColor = "red";
+  console.log("object");
+
+   // Submit if all valid
+  if (isValid) {
+    form.submit();
   }
 });
 
-passwordInput.addEventListener("click", () => {
+passwordInput.addEventListener("focus", () => {
   passwordRules.style.display = "block";
 });
