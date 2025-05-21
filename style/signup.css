@@ -68,7 +68,7 @@ ul {
 }
 
 ul li {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   line-height: 1.2rem;
 }
 
@@ -80,10 +80,8 @@ li::before {
   font-weight: bold;
 }
 
-ul li .valid {
-  content: "add ";
-  color: green;
-  font-weight: bold;
+.valid {
+  text-decoration: line-through;
 }
 
 .input-error-msg p {
