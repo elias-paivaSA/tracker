@@ -28,6 +28,9 @@ function validatePassword(password) {
   return regex.test(password);
 }
 
+eyeClosed.style.display = "none";
+eyeClosedTwo.style.display = "none";
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -39,7 +42,6 @@ form.addEventListener("submit", (e) => {
   emailMessageOne.style.display = "none";
   emailMessageTwo.style.display = "none";
   emailInput.style.borderColor = "initial";
-
 
   passwordMessage.style.display = "none";
   passwordInput.style.borderColor = "initial";
@@ -58,12 +60,12 @@ form.addEventListener("submit", (e) => {
     emailMessageOne.style.display = "block";
     emailInput.style.borderColor = "red";
     isValid = false;
-  } else if (!validateEmail(emailInput.value)) { 
+  } else if (!validateEmail(emailInput.value)) {
     emailInput.style.borderColor = "red";
     isValid = false;
   }
 
-    // Password validation - check empty first
+  // Password validation - check empty first
   if (passwordInput.value.trim() === "") {
     passwordMessage.style.display = "block";
     passwordInput.style.borderColor = "red";
@@ -88,11 +90,13 @@ form.addEventListener("submit", (e) => {
     isValid = false;
   }
 
-   // Submit if all valid
+  // Submit if all valid
   if (isValid) {
     form.submit();
   }
 });
+
+
 
 nameInput.addEventListener("click", () => {
   nameMessage.style.display = "none";
@@ -117,32 +121,34 @@ passwordTwoInput.addEventListener("click", () => {
 passwordInput.addEventListener("keyup", () => {
   if (passwordInput.value.trim() !== "") {
     eyeClosed.style.display = "none";
-    }
-
+  }
 });
 
 passwordTwoInput.addEventListener("keyup", () => {
   if (passwordTwoInput.value.trim() !== "") {
     eyeClosedTwo.style.display = "none";
-    }
+  }
 });
 
 eyeOpen.addEventListener("click", () => {
   eyeClosed.style.display = "block";
-  passwordInput.type="text";
+  passwordInput.type = "text";
 });
 
 eyeOpenTwo.addEventListener("click", () => {
-    eyeClosedTwo.style.display = "block";
-    passwordTwoInput.type="text"; 
+  eyeClosedTwo.style.display = "block";
+  passwordTwoInput.type = "text";
 });
-
+  
 eyeClosed.addEventListener("click", () => {
-    eyeOpen.style.display = "block";
-    passwordTwoInput.type="password"; 
+  eyeClosed.style.display="none";
+  eyeOpen.style.display = "block";
+  passwordInput.type = "password";
 });
 
 eyeClosedTwo.addEventListener("click", () => {
-    eyeOpenTwo.style.display = "block";
-    passwordTwoInput.type="password"; 
+  eyeClosedTwo.style.display="none";
+  eyeOpenTwo.style.display = "block";
+  passwordTwoInput.type = "password";
 });
+
