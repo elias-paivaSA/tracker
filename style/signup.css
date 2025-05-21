@@ -72,12 +72,16 @@ ul li {
   line-height: 1.2rem;
 }
 
-ul li .valid {
-  color: black
-}
+
 
 li::before {
   content: "● ";
+  color: green;
+  font-weight: bold;
+}
+
+ul li .valid {
+  content: "add ";
   color: green;
   font-weight: bold;
 }

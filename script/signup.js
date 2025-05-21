@@ -43,7 +43,8 @@ passwordInput.addEventListener("keyup", () => {
   const upper = new RegExp('(?=.*[A-Z])');
   const number = new RegExp('(?=.*[0-9])');
   const special = new RegExp('(?=.*[!@#\$%\^&\*])');
-  const length = new RegExp('(?=.{8,})');
+  const length = new RegExp(/^.{4,12}$/);
+
 
   if (lower.test(value)) {
     characterLowercase.classList.add("valid");
