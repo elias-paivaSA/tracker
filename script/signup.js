@@ -16,6 +16,14 @@ const emailMessageOne = document.querySelector(".email-msg-one");
 const emailMessageTwo = document.querySelector(".email-msg-two");
 const passwordMessage = document.querySelector(".password-msg");
 const passwordTwoMessage = document.querySelector(".password-two-msg");
+
+const characterNumber = document.querySelector(".character");
+const lowercase = document.querySelector(".lowercase");
+const uppercase = document.querySelector(".uppercase");
+const number = document.querySelector(".character-number");
+const specialCharacter = document.querySelector(".special-character");
+
+
 const footer = document.querySelector("footer");
 
 function validateEmail(email) {
@@ -27,6 +35,15 @@ function validatePassword(password) {
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{4,12}$/;
   return regex.test(password);
 }
+
+passwordInput.addEventListener("keyup", () => {
+  const lower = new RegExp('(?=.*[a-z])');
+  const upper = new RegExp('(?=.*[A-Z])');
+  const number = new RegExp('(?=.*[0-9])');
+  const special = new RegExp('(?=.*[!@#\$%\^&\*])');
+  const lenght = new RegExp('(?=.{8,})');
+
+});
 
 eyeClosed.style.display = "none";
 eyeClosedTwo.style.display = "none";
@@ -151,4 +168,6 @@ eyeClosedTwo.addEventListener("click", () => {
   eyeOpenTwo.style.display = "block";
   passwordTwoInput.type = "password";
 });
+
+
 
