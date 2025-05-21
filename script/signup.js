@@ -17,7 +17,7 @@ const emailMessageTwo = document.querySelector(".email-msg-two");
 const passwordMessage = document.querySelector(".password-msg");
 const passwordTwoMessage = document.querySelector(".password-two-msg");
 
-const characterLenght = document.querySelector(".character");
+const characterLength = document.querySelector(".character");
 const characterLowercase = document.querySelector(".lowercase");
 const characterUppercase = document.querySelector(".uppercase");
 const characterNumber = document.querySelector(".character-number");
@@ -36,41 +36,43 @@ function validatePassword(password) {
   return regex.test(password);
 }
 
-passwordInput.addEventListener("keyup", (data) => {
+passwordInput.addEventListener("keyup", () => {
+  const value = passwordInput.value;
+
   const lower = new RegExp('(?=.*[a-z])');
   const upper = new RegExp('(?=.*[A-Z])');
   const number = new RegExp('(?=.*[0-9])');
   const special = new RegExp('(?=.*[!@#\$%\^&\*])');
-  const lenght = new RegExp('(?=.{8,})');
+  const length = new RegExp('(?=.{8,})');
 
-  if (lower.test(data)) {
+  if (lower.test(value)) {
     characterLowercase.classList.add("valid");
   } else {
     characterLowercase.classList.remove("valid");
   }
 
-  if (upper.test(data)) {
+  if (upper.test(value)) {
     characterUppercase.classList.add("valid");
   } else {
     characterUppercase.classList.remove("valid");
   }
 
-   if (number.test(data)) {
+   if (number.test(value)) {
     characterNumber.classList.add("valid");
   } else {
     characterNumber.classList.remove("valid");
   }
 
-  if (special.test(data)) {
+  if (special.test(value)) {
     characterSpecial.classList.add("valid");
   } else {
     characterSpecial.classList.remove("valid");
   }
 
-  if (lenght.test(data)) {
-    characterLenght.classList.add("valid");
+  if (length.test(value)) {
+    characterLength.classList.add("valid");
   } else {
-    characterLenght.classList.remove("valid");
+    characterLength.classList.remove("valid");
   }
 
 });
