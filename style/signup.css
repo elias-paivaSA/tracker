@@ -72,6 +72,10 @@ ul li {
   line-height: 1.2rem;
 }
 
+ul li .valid {
+  color: black
+}
+
 li::before {
   content: "● ";
   color: green;

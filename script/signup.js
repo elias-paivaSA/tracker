@@ -17,11 +17,11 @@ const emailMessageTwo = document.querySelector(".email-msg-two");
 const passwordMessage = document.querySelector(".password-msg");
 const passwordTwoMessage = document.querySelector(".password-two-msg");
 
-const characterNumber = document.querySelector(".character");
-const lowercase = document.querySelector(".lowercase");
-const uppercase = document.querySelector(".uppercase");
-const number = document.querySelector(".character-number");
-const specialCharacter = document.querySelector(".special-character");
+const characterLenght = document.querySelector(".character");
+const characterLowercase = document.querySelector(".lowercase");
+const characterUppercase = document.querySelector(".uppercase");
+const characterNumber = document.querySelector(".character-number");
+const characterSpecial = document.querySelector(".special-character");
 
 
 const footer = document.querySelector("footer");
@@ -36,12 +36,42 @@ function validatePassword(password) {
   return regex.test(password);
 }
 
-passwordInput.addEventListener("keyup", () => {
+passwordInput.addEventListener("keyup", (data) => {
   const lower = new RegExp('(?=.*[a-z])');
   const upper = new RegExp('(?=.*[A-Z])');
   const number = new RegExp('(?=.*[0-9])');
   const special = new RegExp('(?=.*[!@#\$%\^&\*])');
   const lenght = new RegExp('(?=.{8,})');
+
+  if (lower.test(data)) {
+    characterLowercase.classList.add("valid");
+  } else {
+    characterLowercase.classList.remove("valid");
+  }
+
+  if (upper.test(data)) {
+    characterUppercase.classList.add("valid");
+  } else {
+    characterUppercase.classList.remove("valid");
+  }
+
+   if (number.test(data)) {
+    characterNumber.classList.add("valid");
+  } else {
+    characterNumber.classList.remove("valid");
+  }
+
+  if (special.test(data)) {
+    characterSpecial.classList.add("valid");
+  } else {
+    characterSpecial.classList.remove("valid");
+  }
+
+  if (lenght.test(data)) {
+    characterLenght.classList.add("valid");
+  } else {
+    characterLenght.classList.remove("valid");
+  }
 
 });
 
