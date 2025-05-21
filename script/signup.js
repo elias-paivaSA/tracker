@@ -6,6 +6,10 @@ const buttonCreateAccount = document.querySelector(".login-btn");
 const form = document.querySelector("form");
 const passwordRules = document.querySelector(".password-rules");
 const googleBtn = document.querySelector(".google-btn");
+const eyeOpen = document.querySelector(".img-two");
+const eyeClosed = document.querySelector(".img-three");
+const eyeOpenTwo = document.querySelector(".img-two-eye-open");
+const eyeClosedTwo = document.querySelector(".img-three-eye-closed");
 const facebookBtn = document.querySelector(".facebook-btn");
 const nameMessage = document.querySelector(".name-msg");
 const emailMessageOne = document.querySelector(".email-msg-one");
@@ -13,9 +17,6 @@ const emailMessageTwo = document.querySelector(".email-msg-two");
 const passwordMessage = document.querySelector(".password-msg");
 const passwordTwoMessage = document.querySelector(".password-two-msg");
 const footer = document.querySelector("footer");
-
-//el.style.removeProperty('zoom');
-
 
 function validateEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -111,4 +112,37 @@ passwordInput.addEventListener("click", () => {
 passwordTwoInput.addEventListener("click", () => {
   passwordTwoMessage.style.display = "none";
   passwordTwoInput.style.borderColor = "initial";
+});
+
+passwordInput.addEventListener("keyup", () => {
+  if (passwordInput.value.trim() !== "") {
+    eyeClosed.style.display = "none";
+    }
+
+});
+
+passwordTwoInput.addEventListener("keyup", () => {
+  if (passwordTwoInput.value.trim() !== "") {
+    eyeClosedTwo.style.display = "none";
+    }
+});
+
+eyeOpen.addEventListener("click", () => {
+  eyeClosed.style.display = "block";
+  passwordInput.type="text";
+});
+
+eyeOpenTwo.addEventListener("click", () => {
+    eyeClosedTwo.style.display = "block";
+    passwordTwoInput.type="text"; 
+});
+
+eyeClosed.addEventListener("click", () => {
+    eyeOpen.style.display = "block";
+    passwordTwoInput.type="password"; 
+});
+
+eyeClosedTwo.addEventListener("click", () => {
+    eyeOpenTwo.style.display = "block";
+    passwordTwoInput.type="password"; 
 });
