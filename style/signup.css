@@ -7,23 +7,19 @@ body {
   overflow-x: hidden;
 }
 
-/* */
-
 .main-ctn {
   display: flex;
-  flex-direction: column; /* stacks image and form on small screens */
+  flex-direction: column;
   width: 97%;
   max-width: 1200px;
   margin: auto;
-    flex: 1;
-  display: flex;
-  flex-direction: column;
+  flex: 1;
 }
 
 .ctn-img {
   display: none;
   width: 100%;
-  height: 300px; /* mobile-friendly height */
+  height: 300px;
   background-image: url("/img/cartoon-office-manager_1012-486.avif");
   background-size: cover;
   background-position: center;
@@ -43,12 +39,18 @@ header {
 }
 
 header h1 {
+  text-align: center;
   font-size: 3rem;
 }
 
 .input-wrapper {
   position: relative;
-  margin-bottom: 0.3rem; /* space between inputs */
+  margin-bottom: 0.3rem;
+}
+
+.flex-icons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .input-error-msg {
@@ -59,20 +61,19 @@ header h1 {
 
 ul {
   display: none;
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.5rem 0;
   padding: 0;
   list-style: none;
   text-align: left;
 }
 
-ul li{
+ul li {
   font-size: 0.7rem;
-  line-height: 1.2rem
-
+  line-height: 1.2rem;
 }
 
 li::before {
-  content: "● "; /* Unicode checkmark + space */
+  content: "● ";
   color: green;
   font-weight: bold;
 }
@@ -84,27 +85,47 @@ li::before {
   margin: 0 0 10px 0;
 }
 
-.input-wrapper img {
+/* Left icon – first img */
+.input-wrapper img:first-of-type {
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: gray;
   pointer-events: none;
+  color: gray;
   font-size: 1rem;
 }
 
+/* Right icons – eye toggle */
+.input-wrapper .img-two,
+.input-wrapper .img-three {
+  
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Inputs with left icon, and password with right icon padding */
 .input-wrapper input[type="email"],
-.input-wrapper input[type="password"],
-.input-wrapper input[type="text"] {
+.input-wrapper input[type="text"],
+.input-wrapper input[type="password"] {
   box-sizing: border-box;
-  width: 100%; /* or a fixed width if you prefer */
+  width: 100%;
   height: 50px;
-  padding-left: 35px; /* space for icon */
+  padding-left: 35px;
   border: 2px solid #3b82f6;
   border-radius: 6px;
   font-size: 1rem;
   transition: all 0.5s ease;
+}
+
+.input-wrapper input[type="password"] {
+  padding-right: 40px;
 }
 
 input:focus {
@@ -118,7 +139,7 @@ input:hover {
 }
 
 ::placeholder {
-  color: black; /* light gray */
+  color: black;
   font-weight: 400;
 }
 
@@ -132,8 +153,6 @@ input:hover {
   background-color: #3b82f6;
   color: white;
 }
-
-
 
 .login-btn:hover {
   background-color: #2563eb;
@@ -154,7 +173,6 @@ input:hover {
   background-color: rgba(219, 68, 55, 0.1);
   box-shadow: 0 4px 10px rgba(219, 68, 55, 0.2);
 }
-
 
 .facebook-btn:hover {
   background-color: rgba(24, 119, 242, 0.1);
@@ -178,36 +196,36 @@ form span:after {
   border-bottom: 1px solid;
   margin: auto;
 }
+
 form span:before {
   margin-right: 10px;
 }
+
 form span:after {
   margin-left: 10px;
 }
 
-
 .glg-fcb-btn {
   display: flex;
-  flex-wrap: wrap; /* wrap if needed */
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  gap: 0.5rem; /* smaller space between buttons */
+  gap: 0.5rem;
 }
 
 .google-btn,
 .facebook-btn {
   flex: 1;
-  margin: 0; 
+  margin: 0;
   display: flex;
   align-items: center;
   min-width: 40%;
   justify-content: center;
-  gap: 0.5rem; /* space between icon and text */
-  padding: 1rem; /* horizontal padding inside the button */
-  font-size: 0.9rem; /* optional: tighten text a bit */
+  gap: 0.5rem;
+  padding: 1rem;
+  font-size: 0.9rem;
   height: 50px;
   border-radius: 6px;
-  flex: 1;/* remove any extra margin */
 }
 
 .google-btn img,
@@ -217,7 +235,6 @@ form span:after {
   margin-right: 8px;
 }
 
-
 .remember-password {
   margin-top: 1rem;
   display: flex;
@@ -225,8 +242,6 @@ form span:after {
   align-items: center;
   text-align: center;
 }
-
-
 
 .remember-left input[type="checkbox"] {
   margin-right: 6px;
@@ -238,7 +253,8 @@ form span:after {
   margin: 0;
 }
 
-a, .remember-password p {
+a,
+.remember-password p {
   color: #3b82f6;
   text-decoration: none;
   font-weight: 500;
@@ -246,7 +262,7 @@ a, .remember-password p {
 }
 
 a:hover {
-  color: #2563eb; /* darker blue */
+  color: #2563eb;
   text-decoration: underline;
 }
 
@@ -256,19 +272,20 @@ a:focus {
   border-radius: 4px;
 }
 
-
 footer {
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
 }
 
+/* DESKTOP */
 @media (min-width: 768px) and (max-width: 2500px) {
   body {
     background-color: white;
   }
+
   .main-ctn {
-    margin: 50px auto auto auto;
+    margin: 50px auto 0;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -278,11 +295,11 @@ footer {
   }
 
   .ctn-img {
-    display: block; /* <-- show it */
+    display: block;
     background-image: url("/img/login-image.jpg");
-    background-size: contain; /* SEE the full image */
-    background-position: center; /* center it in the box */
-    background-repeat: no-repeat; /* don't tile it */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 50%;
     height: 100vh;
   }
@@ -292,15 +309,16 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 4rem;
+    padding: 3rem;
   }
 
-   .remember-password {
+  .remember-password {
     flex-direction: column;
     gap: 1rem;
   }
 }
 
+/* TABLET / NARROW */
 @media (max-width: 899px) {
   .glg-fcb-btn {
     flex-direction: column;
@@ -317,18 +335,21 @@ footer {
   }
 }
 
+/* DESKTOP – SOCIAL BUTTONS */
 @media (min-width: 900px) {
   .glg-fcb-btn {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
+
   .google-btn,
   .facebook-btn {
     flex: 1;
   }
 }
 
+/* MOBILE SMALLEST */
 @media (max-width: 480px) {
   main,
   header {
@@ -336,6 +357,6 @@ footer {
   }
 
   .ctn-form {
-    padding-top: 2rem; /* optional: adds breathing room below the title */
+    padding-top: 2rem;
   }
 }
