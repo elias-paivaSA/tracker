@@ -200,7 +200,7 @@ eyeClosedTwo.addEventListener("click", () => {
   eyeClosedTwo.style.display="none";
   eyeOpenTwo.style.display = "block";
   passwordTwoInput.type = "password";
-});
+}) ;
 
 
 
