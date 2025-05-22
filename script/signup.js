@@ -16,7 +16,6 @@ const emailMessageOne = document.querySelector(".email-msg-one");
 const emailMessageTwo = document.querySelector(".email-msg-two");
 const passwordMessage = document.querySelector(".password-msg");
 const passwordTwoMessage = document.querySelector(".password-two-msg");
-
 const characterLength = document.querySelector(".character");
 const characterLowercase = document.querySelector(".lowercase");
 const characterUppercase = document.querySelector(".uppercase");
