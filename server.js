@@ -11,6 +11,22 @@ const app = express();
 app.use(cors());                      // Allow all origins (adjust if needed)
 app.use(express.json());              // Parse JSON request bodies
 
+// Middleware to verify JWT token for protected routes
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied, token missing!' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ message: 'Invalid or expired token' });
+    req.user = user;
+    next();
+  });
+}
+
 // Signup route with password hashing + JWT token creation
 app.post('/auth/signup', async (req, res) => {
   const { username, email, password } = req.body;
@@ -38,7 +54,7 @@ app.post('/auth/signup', async (req, res) => {
   }
 });
 
-// Login route (checks password and returns success message)
+// Login route with JWT token creation
 app.post('/auth/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -53,11 +69,26 @@ app.post('/auth/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    res.status(200).json({ message: 'Login successful!' });
+    // Generate JWT token after successful login
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(200).json({
+      message: 'Login successful!',
+      token
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error during login' });
   }
+});
+
+// Protected route example
+app.get('/dashboard', authenticateToken, (req, res) => {
+  res.json({ message: `Welcome to your dashboard, ${req.user.email}!` });
 });
 
 // Simple test route
