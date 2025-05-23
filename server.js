@@ -1,27 +1,62 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');          // <-- Import cors
-const bcrypt = require('bcrypt');      // <-- Import bcrypt for hashing
-const User = require('./models/User'); // Import the User model
+const cors = require('cors');          // Enable CORS
+const bcrypt = require('bcrypt');      // Password hashing
+const jwt = require('jsonwebtoken');  // JWT generation
+const User = require('./models/User'); // Your User model
 
 const app = express();
 
-app.use(cors());                      // <-- Enable CORS for all origins
-app.use(express.json());              // Parse JSON bodies from requests
+app.use(cors());                      // Allow all origins (adjust if needed)
+app.use(express.json());              // Parse JSON request bodies
 
-// Signup route
+// Signup route with password hashing + JWT token creation
 app.post('/auth/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash password with 10 salt rounds
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash password
+
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
-    res.status(201).json({ message: 'User created successfully' });
+
+    // Generate JWT token after signup
+    const token = jwt.sign(
+      { userId: newUser._id, email: newUser.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.status(201).json({
+      message: 'User created successfully',
+      token // send token to frontend
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error creating user' });
+  }
+});
+
+// Login route (checks password and returns success message)
+app.post('/auth/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+
+    res.status(200).json({ message: 'Login successful!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error during login' });
   }
 });
 
