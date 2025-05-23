@@ -138,11 +138,42 @@ form.addEventListener("submit", (e) => {
     passwordTwoInput.style.borderColor = "red";
     isValid = false;
   }
-
+  
   // Submit if all valid
+  
   if (isValid) {
-    form.submit();
-  }
+  // Prepare the data object to send
+  const data = {
+    username: nameInput.value.trim(),
+    email: emailInput.value.trim(),
+    password: passwordInput.value,
+  };
+
+  // Send data with fetch to your backend route
+  fetch('http://localhost:3000/auth/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        // Backend returned an error status, parse message
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Signup failed');
+      }
+      return response.json();
+    })
+    .then((result) => {
+      alert('Signup successful! 🎉');
+      form.reset();
+      // You can also redirect or update UI here if needed
+    })
+    .catch((error) => {
+      alert('Error: ' + error.message);
+    });
+}
 });
 
 

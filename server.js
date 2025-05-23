@@ -1,18 +1,22 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');          // <-- Import cors
+const bcrypt = require('bcrypt');      // <-- Import bcrypt for hashing
 const User = require('./models/User'); // Import the User model
 
 const app = express();
 
-app.use(express.json()); // Parse JSON bodies from requests
+app.use(cors());                      // <-- Enable CORS for all origins
+app.use(express.json());              // Parse JSON bodies from requests
 
 // Signup route
 app.post('/auth/signup', async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    const newUser = new User({ username, email, password });
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash password with 10 salt rounds
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
