@@ -176,8 +176,6 @@ form.addEventListener("submit", (e) => {
 }
 });
 
-
-
 nameInput.addEventListener("click", () => {
   nameMessage.style.display = "none";
   nameInput.style.borderColor = "initial";
