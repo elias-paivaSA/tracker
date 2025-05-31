@@ -22,7 +22,6 @@ const characterUppercase = document.querySelector(".uppercase");
 const characterNumber = document.querySelector(".character-number");
 const characterSpecial = document.querySelector(".special-character");
 
-
 const footer = document.querySelector("footer");
 
 function validateEmail(email) {
@@ -38,12 +37,11 @@ function validatePassword(password) {
 passwordInput.addEventListener("keyup", () => {
   const value = passwordInput.value;
 
-  const lower = new RegExp('(?=.*[a-z])');
-  const upper = new RegExp('(?=.*[A-Z])');
-  const number = new RegExp('(?=.*[0-9])');
-  const special = new RegExp('(?=.*[!@#\$%\^&\*])');
+  const lower = new RegExp("(?=.*[a-z])");
+  const upper = new RegExp("(?=.*[A-Z])");
+  const number = new RegExp("(?=.*[0-9])");
+  const special = new RegExp("(?=.*[!@#$%^&*])");
   const length = new RegExp(/^.{4,12}$/);
-
 
   if (lower.test(value)) {
     characterLowercase.classList.add("valid");
@@ -57,7 +55,7 @@ passwordInput.addEventListener("keyup", () => {
     characterUppercase.classList.remove("valid");
   }
 
-   if (number.test(value)) {
+  if (number.test(value)) {
     characterNumber.classList.add("valid");
   } else {
     characterNumber.classList.remove("valid");
@@ -74,7 +72,6 @@ passwordInput.addEventListener("keyup", () => {
   } else {
     characterLength.classList.remove("valid");
   }
-
 });
 
 eyeClosed.style.display = "none";
@@ -138,42 +135,43 @@ form.addEventListener("submit", (e) => {
     passwordTwoInput.style.borderColor = "red";
     isValid = false;
   }
-  
-  // Submit if all valid
-  
-  if (isValid) {
-  // Prepare the data object to send
-  const data = {
-    username: nameInput.value.trim(),
-    email: emailInput.value.trim(),
-    password: passwordInput.value,
-  };
 
-  // Send data with fetch to your backend route
-  fetch('http://localhost:3000/auth/signup', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-    .then(async (response) => {
-      if (!response.ok) {
-        // Backend returned an error status, parse message
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'Signup failed');
-      }
-      return response.json();
+  // Submit if all valid
+
+  if (isValid) {
+    // Prepare the data object to send
+    const data = {
+      username: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      password: passwordInput.value,
+    };
+
+    // Send data with fetch to your backend route
+    fetch("http://localhost:3000/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     })
-    .then((result) => {
-      alert('Signup successful! 🎉');
-      form.reset();
-      // You can also redirect or update UI here if needed
-    })
-    .catch((error) => {
-      alert('Error: ' + error.message);
-    });
-}
+      .then(async (response) => {
+        if (!response.ok) {
+          // Backend returned an error status, parse message
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Signup failed");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        alert("Signup successful! 🎉");
+        form.reset();
+        if (result.token) {
+          localStorage.setItem("token", result.token);
+          // Redirect after alert
+          window.location.href = "/dashboard.html";
+        }
+      });
+  }
 });
 
 nameInput.addEventListener("click", () => {
@@ -217,18 +215,15 @@ eyeOpenTwo.addEventListener("click", () => {
   eyeClosedTwo.style.display = "block";
   passwordTwoInput.type = "text";
 });
-  
+
 eyeClosed.addEventListener("click", () => {
-  eyeClosed.style.display="none";
+  eyeClosed.style.display = "none";
   eyeOpen.style.display = "block";
   passwordInput.type = "password";
 });
 
 eyeClosedTwo.addEventListener("click", () => {
-  eyeClosedTwo.style.display="none";
+  eyeClosedTwo.style.display = "none";
   eyeOpenTwo.style.display = "block";
   passwordTwoInput.type = "password";
-}) ;
-
-
-
+});
