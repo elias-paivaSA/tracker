@@ -14,8 +14,7 @@ app.use(express.json());
 
 // ✅ Serve static files from the 'src' folder
 app.use(express.static(path.join(__dirname, 'src')));
-app.use('/style', express.static(path.join(__dirname, 'style')));
-app.use('/script', express.static(path.join(__dirname, 'script')));
+
 
 
 // ✅ Basic root route
