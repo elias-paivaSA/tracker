@@ -189,6 +189,24 @@ passwordInput.addEventListener("click", () => {
   passwordInput.style.borderColor = "initial";
 });
 
+passwordInput.addEventListener('keyup', function(event) {
+  if (event.key === 'Tab') {
+    passwordRules.style.display = "block";
+  }
+});
+
+passwordInput.addEventListener('keydown', function(event) {
+  if (event.key === 'Tab') {
+    passwordRules.style.display = "none";
+  }
+});
+
+document.addEventListener('click', function(event) {
+  if (!passwordInput.contains(event.target)) {
+    passwordRules.style.display = 'none'; 
+  }
+});
+
 passwordTwoInput.addEventListener("click", () => {
   passwordTwoMessage.style.display = "none";
   passwordTwoInput.style.borderColor = "initial";
@@ -226,4 +244,10 @@ eyeClosedTwo.addEventListener("click", () => {
   eyeClosedTwo.style.display = "none";
   eyeOpenTwo.style.display = "block";
   passwordTwoInput.type = "password";
+});
+
+passwordInput.addEventListener('keydown', function(event) {
+  if (event.tagert === 'Tab') {
+    passwordRules.style.display = "none";
+  }
 });
