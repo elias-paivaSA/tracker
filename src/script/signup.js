@@ -21,6 +21,7 @@ const characterLowercase = document.querySelector(".lowercase");
 const characterUppercase = document.querySelector(".uppercase");
 const characterNumber = document.querySelector(".character-number");
 const characterSpecial = document.querySelector(".special-character");
+const spinnerOverlay = document.querySelector(".spinner-overlay");
 
 const footer = document.querySelector("footer");
 
@@ -139,115 +140,120 @@ form.addEventListener("submit", (e) => {
   // Submit if all valid
 
   if (isValid) {
-    // Prepare the data object to send
     const data = {
       username: nameInput.value.trim(),
       email: emailInput.value.trim(),
       password: passwordInput.value,
     };
 
-    // Send data with fetch to your backend route
-    fetch("http://localhost:3000/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(async (response) => {
-        if (!response.ok) {
-          // Backend returned an error status, parse message
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Signup failed");
-        }
-        return response.json();
+    form.style.display = 'none';
+    spinnerOverlay.classList.remove('hidden');
+
+    setTimeout(() => {
+      fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       })
-      .then((result) => {
-        alert("Signup successful! 🎉");
-        form.reset();
-        if (result.token) {
-          localStorage.setItem("token", result.token);
-          // Redirect after alert
+        .then(async (response) => {
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Signup failed");
+          }
+          return response.json();
+        })
+        .then((result) => {
+          if (result.token) {
+            localStorage.setItem("token", result.token);
+          }
           window.location.href = "/dashboard.html";
-        }
-      });
-  }
-});
+        })
+        .catch((error) => {
+          spinnerOverlay.classList.add('hidden');
+          form.style.display = 'block';
+          console.error(error);
+          alert(error.message || "Something went wrong. Please try again.");
+        });
+    }, 4000);
+  };
 
-nameInput.addEventListener("click", () => {
-  nameMessage.style.display = "none";
-  nameInput.style.borderColor = "initial";
-});
+  
+  nameInput.addEventListener("click", () => {
+    nameMessage.style.display = "none";
+    nameInput.style.borderColor = "initial";
+  });
 
-emailInput.addEventListener("click", () => {
-  emailMessageOne.style.display = "none";
-  emailInput.style.borderColor = "initial";
-});
+  emailInput.addEventListener("click", () => {
+    emailMessageOne.style.display = "none";
+    emailInput.style.borderColor = "initial";
+  });
 
-passwordInput.addEventListener("click", () => {
-  passwordRules.style.display = "block";
-  passwordInput.style.borderColor = "initial";
-});
-
-passwordInput.addEventListener('keyup', function(event) {
-  if (event.key === 'Tab') {
+  passwordInput.addEventListener("click", () => {
     passwordRules.style.display = "block";
-  }
-});
+    passwordInput.style.borderColor = "initial";
+  });
 
-passwordInput.addEventListener('keydown', function(event) {
-  if (event.key === 'Tab') {
-    passwordRules.style.display = "none";
-  }
-});
+  passwordInput.addEventListener("keyup", function (event) {
+    if (event.key === "Tab") {
+      passwordRules.style.display = "block";
+    }
+  });
 
-document.addEventListener('click', function(event) {
-  if (!passwordInput.contains(event.target)) {
-    passwordRules.style.display = 'none'; 
-  }
-});
+  passwordInput.addEventListener("keydown", function (event) {
+    if (event.key === "Tab") {
+      passwordRules.style.display = "none";
+    }
+  });
 
-passwordTwoInput.addEventListener("click", () => {
-  passwordTwoMessage.style.display = "none";
-  passwordTwoInput.style.borderColor = "initial";
-});
+  document.addEventListener("click", function (event) {
+    if (!passwordInput.contains(event.target)) {
+      passwordRules.style.display = "none";
+    }
+  });
 
-passwordInput.addEventListener("keyup", () => {
-  if (passwordInput.value.trim() !== "") {
+  passwordTwoInput.addEventListener("click", () => {
+    passwordTwoMessage.style.display = "none";
+    passwordTwoInput.style.borderColor = "initial";
+  });
+
+  passwordInput.addEventListener("keyup", () => {
+    if (passwordInput.value.trim() !== "") {
+      eyeClosed.style.display = "none";
+    }
+  });
+
+  passwordTwoInput.addEventListener("keyup", () => {
+    if (passwordTwoInput.value.trim() !== "") {
+      eyeClosedTwo.style.display = "none";
+    }
+  });
+
+  eyeOpen.addEventListener("click", () => {
+    eyeClosed.style.display = "block";
+    passwordInput.type = "text";
+  });
+
+  eyeOpenTwo.addEventListener("click", () => {
+    eyeClosedTwo.style.display = "block";
+    passwordTwoInput.type = "text";
+  });
+
+  eyeClosed.addEventListener("click", () => {
     eyeClosed.style.display = "none";
-  }
-});
+    eyeOpen.style.display = "block";
+    passwordInput.type = "password";
+  });
 
-passwordTwoInput.addEventListener("keyup", () => {
-  if (passwordTwoInput.value.trim() !== "") {
+  eyeClosedTwo.addEventListener("click", () => {
     eyeClosedTwo.style.display = "none";
-  }
-});
+    eyeOpenTwo.style.display = "block";
+    passwordTwoInput.type = "password";
+  });
 
-eyeOpen.addEventListener("click", () => {
-  eyeClosed.style.display = "block";
-  passwordInput.type = "text";
-});
-
-eyeOpenTwo.addEventListener("click", () => {
-  eyeClosedTwo.style.display = "block";
-  passwordTwoInput.type = "text";
-});
-
-eyeClosed.addEventListener("click", () => {
-  eyeClosed.style.display = "none";
-  eyeOpen.style.display = "block";
-  passwordInput.type = "password";
-});
-
-eyeClosedTwo.addEventListener("click", () => {
-  eyeClosedTwo.style.display = "none";
-  eyeOpenTwo.style.display = "block";
-  passwordTwoInput.type = "password";
-});
-
-passwordInput.addEventListener('keydown', function(event) {
-  if (event.tagert === 'Tab') {
-    passwordRules.style.display = "none";
-  }
-});
+  passwordInput.addEventListener("keydown", function (event) {
+    if (event.tagert === "Tab") {
+      passwordRules.style.display = "none";
+    }
+  })});

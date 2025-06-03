@@ -25,7 +25,7 @@
       </header>
 
       <main>
-        <form method="POST"  action="/auth/signup">
+        <form method="POST" action="/auth/signup" autocomplete="off">
           <div class="input-error-msg">
             <div class="input-wrapper">
               <img src="/img/person-badge.svg" alt="" />
@@ -46,7 +46,7 @@
           <div class="input-error-msg">
             <div class="input-wrapper">
               <img src="/img/unlock2.svg" alt="" />
-              <img src="/img/eye.svg" alt="" class="img-two"/> <!-- here -->
+              <img src="/img/eye.svg" alt="" class="img-two" /> <!-- here -->
               <img src="img/eye-slash.svg" alt="" class="img-three"> <!-- here -->
               <input type="password" name="password" id="password" placeholder="Password" />
             </div>
@@ -63,7 +63,7 @@
           <div class="input-error-msg">
             <div class="input-wrapper">
               <img src="/img/unlock2.svg" alt="" />
-              <img src="/img/eye.svg" alt="Olho" class="img-two img-two-eye-open"/> <!-- here -->
+              <img src="/img/eye.svg" alt="Olho" class="img-two img-two-eye-open" /> <!-- here -->
               <img src="img/eye-slash.svg" alt="" class="img-three img-three-eye-closed"> <!-- here -->
               <input type="password" name="passwordTwo" id="passwordTwo" placeholder="Confirm Your Password" />
             </div>
@@ -82,6 +82,9 @@
             </button>
           </div>
         </form>
+        <div class="spinner-overlay hidden">
+          <div class="spinner"></div>
+        </div>
       </main>
     </div>
   </div>
