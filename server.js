@@ -15,73 +15,94 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from 'src'
 app.use(express.static(path.join(__dirname, 'src')));
 
+// Session setup (needed for passport)
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Passport serialize/deserialize user
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
-
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
     done(null, user);
   } catch (err) {
-    done(err, null);
+    done(err);
   }
 });
 
+// Google OAuth Strategy
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "/auth/google/callback"
+  callbackURL: "/auth/google/callback",
 },
 async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await User.findOne({ googleId: profile.id });
     if (!user) {
+      // Check if email already exists (local user with same email)
+      const existingEmailUser = await User.findOne({ email: profile.emails[0].value });
+      if (existingEmailUser) {
+        // Attach googleId to existing user (optional, you can also reject)
+        existingEmailUser.googleId = profile.id;
+        await existingEmailUser.save();
+        return done(null, existingEmailUser);
+      }
+      // Create new user with google info, no password
       user = new User({
         username: profile.displayName,
         email: profile.emails[0].value,
-        googleId: profile.id
+        googleId: profile.id,
+        password: undefined, // no password because OAuth user
       });
       await user.save();
     }
-    done(null, user);
+    return done(null, user);
   } catch (err) {
-    console.error('Google Auth Error:', err);
-    done(err, null);
+    return done(err, null);
   }
 }));
 
+// Routes
+
+// Google OAuth login
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
+// Google OAuth callback
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
+    // Create JWT for logged-in user
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Redirect with token (adjust front-end URL accordingly)
     res.redirect(`/dashboard.html?token=${token}`);
   }
 );
 
+// Basic root route
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+// Serve dashboard.html explicitly
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'dashboard.html'));
 });
 
+// Signup route
 app.post('/auth/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -114,6 +135,7 @@ app.post('/auth/signup', async (req, res) => {
   }
 });
 
+// Connect to DB and start server
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
