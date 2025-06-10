@@ -166,7 +166,7 @@ input:hover {
 }
 
 .google-btn,
-.facebook-btn {
+.github-btn {
   height: 50px;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -180,7 +180,7 @@ input:hover {
   box-shadow: 0 4px 10px rgba(219, 68, 55, 0.2);
 }
 
-.facebook-btn:hover {
+.github-btn:hover {
   background-color: rgba(24, 119, 242, 0.1);
   box-shadow: 0 4px 10px rgba(24, 119, 242, 0.2);
 }
@@ -211,7 +211,7 @@ form span:after {
   margin-left: 10px;
 }
 
-.glg-fcb-btn {
+.glg-gth-btn {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -220,7 +220,8 @@ form span:after {
 }
 
 .google-btn,
-.facebook-btn {
+.github-btn {
+  width: 100%;
   flex: 1;
   margin: 0;
   display: flex;
@@ -235,7 +236,7 @@ form span:after {
 }
 
 .google-btn img,
-.facebook-btn img {
+.github-btn img {
   width: 20px;
   height: 20px;
   margin-right: 8px;
@@ -356,7 +357,7 @@ footer {
 
 /* TABLET / NARROW */
 @media (max-width: 899px) {
-  .glg-fcb-btn {
+  .glg-gth-btn {
     flex-direction: column;
     gap: 0.5rem;
   }
@@ -373,14 +374,14 @@ footer {
 
 /* DESKTOP – SOCIAL BUTTONS */
 @media (min-width: 900px) {
-  .glg-fcb-btn {
+  .glg-gth-btn {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
   .google-btn,
-  .facebook-btn {
+  .github-btn {
     flex: 1;
   }
 }
