@@ -35,7 +35,6 @@ function validatePassword(password) {
 }
 
 passwordInput.addEventListener("keyup", () => {
-  console.log("object");
   const value = passwordInput.value;
 
   const lower = new RegExp("(?=.*[a-z])");
@@ -180,9 +179,6 @@ form.addEventListener("submit", (e) => {
   };
 });
 
-  if ( passwordRules.style.display = "block") {
-    passwordMessage.style.display = "none";
-  }
 
   nameInput.addEventListener("click", () => {
     nameMessage.style.display = "none";
@@ -235,7 +231,6 @@ form.addEventListener("submit", (e) => {
   });
 
   eyeOpen.addEventListener("click", () => {
-    console.log("object");
     eyeClosed.style.display = "block";
     passwordInput.type = "text";
   });
@@ -259,7 +254,6 @@ form.addEventListener("submit", (e) => {
 
   passwordInput.addEventListener("keydown", function (event) {
     if (event.tagert === "Tab") {
-      console.log("object");
       passwordRules.style.display = "none";
     }
   });
