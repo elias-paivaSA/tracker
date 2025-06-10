@@ -117,16 +117,22 @@ li::before {
 }
 
 .button {
-    display: block;
-    
+    display: flex; 
+    justify-content: center;
     height: 25px;
     background: #4E9CAF;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     color: white;
-    font-weight: bold;
     line-height: 25px;
+}
+
+a img {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  margin-right: 10px;
 }
 
 /* Inputs with left icon, and password with right icon padding */
@@ -171,6 +177,7 @@ input:hover {
   margin: 0.5rem 0;
   background-color: #3b82f6;
   color: white;
+  font-weight: 500;
 }
 
 .login-btn:hover {

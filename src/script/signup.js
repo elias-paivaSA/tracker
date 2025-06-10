@@ -22,7 +22,6 @@ const characterUppercase = document.querySelector(".uppercase");
 const characterNumber = document.querySelector(".character-number");
 const characterSpecial = document.querySelector(".special-character");
 const spinnerOverlay = document.querySelector(".spinner-overlay");
-
 const footer = document.querySelector("footer");
 
 function validateEmail(email) {
@@ -36,6 +35,7 @@ function validatePassword(password) {
 }
 
 passwordInput.addEventListener("keyup", () => {
+  console.log("object");
   const value = passwordInput.value;
 
   const lower = new RegExp("(?=.*[a-z])");
@@ -179,7 +179,10 @@ form.addEventListener("submit", (e) => {
     }, 4000);
   };
 
-  
+  if ( passwordRules.style.display = "block") {
+    passwordMessage.style.display = "none";
+  }
+
   nameInput.addEventListener("click", () => {
     nameMessage.style.display = "none";
     nameInput.style.borderColor = "initial";
@@ -231,6 +234,7 @@ form.addEventListener("submit", (e) => {
   });
 
   eyeOpen.addEventListener("click", () => {
+    console.log("object");
     eyeClosed.style.display = "block";
     passwordInput.type = "text";
   });
@@ -254,6 +258,7 @@ form.addEventListener("submit", (e) => {
 
   passwordInput.addEventListener("keydown", function (event) {
     if (event.tagert === "Tab") {
+      console.log("object");
       passwordRules.style.display = "none";
     }
   })});
