@@ -26,9 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
+passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id);
@@ -38,15 +36,15 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// Google OAuth Strategy
+// Google Strategy
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback",
-},
-async (accessToken, refreshToken, profile, done) => {
+}, async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await User.findOne({ googleId: profile.id });
+
     if (!user) {
       const existingEmailUser = await User.findOne({ email: profile.emails[0].value });
       if (existingEmailUser) {
@@ -55,6 +53,7 @@ async (accessToken, refreshToken, profile, done) => {
         await existingEmailUser.save();
         return done(null, existingEmailUser);
       }
+
       user = new User({
         username: profile.displayName,
         email: profile.emails[0].value,
@@ -62,32 +61,36 @@ async (accessToken, refreshToken, profile, done) => {
         avatar: profile.photos?.[0]?.value,
         password: undefined,
       });
+
       await user.save();
     }
+
     return done(null, user);
   } catch (err) {
     return done(err, null);
   }
 }));
 
-// GitHub OAuth Strategy
+// GitHub Strategy
 passport.use(new GitHubStrategy({
   clientID: process.env.GITHUB_CLIENT_ID,
   clientSecret: process.env.GITHUB_CLIENT_SECRET,
   callbackURL: "/auth/github/callback",
-},
-async (accessToken, refreshToken, profile, done) => {
+}, async (accessToken, refreshToken, profile, done) => {
   try {
     let user = await User.findOne({ githubId: profile.id });
+
     if (!user) {
       const email = profile.emails?.[0]?.value;
       const existingEmailUser = email ? await User.findOne({ email }) : null;
+
       if (existingEmailUser) {
         existingEmailUser.githubId = profile.id;
         existingEmailUser.avatar = profile.photos?.[0]?.value || existingEmailUser.avatar;
         await existingEmailUser.save();
         return done(null, existingEmailUser);
       }
+
       user = new User({
         username: profile.username || profile.displayName,
         email: email || null,
@@ -95,18 +98,21 @@ async (accessToken, refreshToken, profile, done) => {
         avatar: profile.photos?.[0]?.value,
         password: undefined,
       });
+
       await user.save();
     }
+
     return done(null, user);
   } catch (err) {
     return done(err, null);
   }
 }));
 
-// Google Auth Routes
+// Google Routes
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
+
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
@@ -115,10 +121,11 @@ app.get('/auth/google/callback',
   }
 );
 
-// GitHub Auth Routes
+// GitHub Routes
 app.get('/auth/github',
   passport.authenticate('github', { scope: ['user:email'] })
 );
+
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
@@ -127,19 +134,16 @@ app.get('/auth/github/callback',
   }
 );
 
-// Serve static and basic routes
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// Static routes
+app.get('/', (req, res) => res.send('Hello World'));
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'dashboard.html'));
 });
 
-// Signup route
+// Signup
 app.post('/auth/signup', async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
     if (!username || !email || !password) {
       return res.status(400).json({ message: 'Missing fields' });
     }
@@ -150,23 +154,48 @@ app.post('/auth/signup', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({
-      username,
-      email,
-      password: hashedPassword,
-    });
-
+    const user = new User({ username, email, password: hashedPassword });
     await user.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     return res.status(201).json({ token });
   } catch (err) {
-    console.error(err);
+    console.error('Signup error:', err);
     return res.status(500).json({ message: 'Server error' });
   }
 });
 
-// Connect to MongoDB and launch server
+// Login
+app.post('/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Missing fields' });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    if (!user.password) {
+      return res.status(403).json({ message: 'This account uses OAuth login. Use Google or GitHub.' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    return res.status(200).json({ token });
+  } catch (err) {
+    console.error('Login error:', err);
+    return res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Connect and run
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
