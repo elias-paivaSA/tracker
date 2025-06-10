@@ -178,6 +178,7 @@ form.addEventListener("submit", (e) => {
         });
     }, 4000);
   };
+});
 
   if ( passwordRules.style.display = "block") {
     passwordMessage.style.display = "none";
@@ -261,4 +262,4 @@ form.addEventListener("submit", (e) => {
       console.log("object");
       passwordRules.style.display = "none";
     }
-  })});
+  });
