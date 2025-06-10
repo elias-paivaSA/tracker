@@ -116,6 +116,19 @@ li::before {
   pointer-events: auto;
 }
 
+.button {
+    display: block;
+    
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
 /* Inputs with left icon, and password with right icon padding */
 .input-wrapper input[type="email"],
 .input-wrapper input[type="text"],
