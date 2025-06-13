@@ -1,11 +1,9 @@
 body {
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  text-align: center;
   font-family: "Montserrat", sans-serif;
+  margin: 0;
   overflow-x: hidden;
 }
 
@@ -14,7 +12,8 @@ body {
   flex-direction: column; /* stacks image and form on small screens */
   width: 97%;
   max-width: 1200px;
-  margin: auto;
+  margin: 50px auto auto auto;
+  flex: 1;
 }
 
 .ctn-img {
@@ -28,7 +27,7 @@ body {
 }
 
 .ctn-form {
-  width: 100%;
+  padding-top: 5rem;
   box-sizing: border-box;
   max-width: 400px;
   margin: auto;
@@ -40,6 +39,7 @@ header {
 }
 
 header h1 {
+  text-align: center;
   font-size: 3rem;
 }
 
@@ -204,13 +204,15 @@ a img {
   text-decoration: underline;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+div p {
+  font-size: 0.95rem;
   text-align: center;
-  padding-bottom: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
 }
 
 a, .remember-password p {
@@ -236,7 +238,7 @@ a:focus {
     background-color: white;
   }
   .main-ctn {
-    margin: 0;
+    margin: auto auto auto auto;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -253,6 +255,7 @@ a:focus {
     background-repeat: no-repeat; /* don't tile it */
     width: 50%;
     height: 100vh;
+    
   }
 
   .ctn-form {
@@ -260,7 +263,7 @@ a:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 4rem;
+    padding: 5rem;
   }
 
   .remember-password {
